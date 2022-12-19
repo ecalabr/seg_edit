@@ -52,8 +52,9 @@ def get_itksnap_path():
 
 # get a case
 def select_case(parameters, not_these=()):
-    # get list of cases
-    subdirs = sorted(glob(parameters["base_directory"] + "/*/"))
+    # get list of subdirectories
+    basedir = parameters["base_directory"]
+    subdirs = sorted([os.path.join(basedir, item + "/") for item in os.listdir(basedir)])
 
     # remove not_these
     subdirs = [item for item in subdirs if item not in not_these]
@@ -88,20 +89,22 @@ def build_itksnap_command(snap_path, case_dir, parameters):
     return cmd
 
 
-# run command
+# run.bash.bash command
 def run_command(cmd, case_dir, parameters, uname):
 
     # define completion
     complete = False
 
-    # run command
+    # run.bash.bash command
     subprocess.call(fr"{cmd}", shell=True)
+    print("An ITK Snap window is open - proceed with editing...")
 
     # check for running itk snap
     running = True
     while running:
         running = check_itk_running()
         time.sleep(2)
+    print("ITK Snap window closed. Please wait for a command prompt...")
 
     # once not running, perform checks
     corrected_label_image = glob(case_dir + f"/*{parameters['corrected_suffix']}.nii.gz")
@@ -110,6 +113,7 @@ def run_command(cmd, case_dir, parameters, uname):
     if corrected_label_image:
         corrected_label_image = corrected_label_image[0]
         # raise save prompt
+        print("A prompt window is open, please locate it to proceed (try Atl/Apple key + Tab)")
         case_id = os.path.basename(os.path.dirname(case_dir))
         message = f"Would you like to claim credit for manually correcting the following case: {case_id}?"
         response = messagebox.askyesno("Claim Credit?", message)
@@ -234,7 +238,7 @@ def warn_gui(message):
     messagebox.showwarning("Warning!", message)
 
 
-# Press the green button in the gutter to run the script.
+# Press the green button in the gutter to run.bash.bash the script.
 if __name__ == '__main__':
 
     # check for running itksnap and error if open
@@ -261,18 +265,23 @@ if __name__ == '__main__':
     completed = 0
     keep_going = True
     while keep_going:
+        print("Finding a case to segment...")
         case = select_case(params, not_these=already_viewed)
+        print(f"Found case {case}")
         # no cases found
         if case is None:
             warn_gui(f"Did not find any remaining eligible cases to correct.")
             keep_going = False
         else:
             command = build_itksnap_command(itksnap_path, case, params)
+            print(f"Loading case {case}. An ITK Snap window will open soon...")
             success = run_command(command, case, params, username)
             if success:
                 completed += 1
             already_viewed.append(case)
+            print(f"Finished editing case {case}")
             # continue editing?
+            print(f"A prompt window is open. Please locate it to continue (try Alt/Apple + Tab)")
             mesg = f"Would you like to correct another case?"
             resp = messagebox.askyesno("Continue Editing?", mesg)
             if not resp:

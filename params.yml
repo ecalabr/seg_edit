@@ -1,10 +1,10 @@
-base_directory: /home/edc15/Desktop/temp
+base_directory: \\10.115.210.159\data\BraTS2021
 label_file: preop_gbm.label
 case_id_delimiter: _
 image_suffixes:
-  - T1_wm
-  - T2_wm
-  - FLAIR_wm
-  - T1gad_wm
-label_suffix: tumor_seg_auto
-corrected_suffix: tumor_seg_manual
+  - t1
+  - t2
+  - flair
+  - t1ce
+label_suffix: seg
+corrected_suffix: seg_manual
