@@ -1,38 +1,72 @@
 # One Time Installation Instructions
 
+## 0. Find your terminal application
+**Windows**: Search for "Windows Terminal"
+
+**MacOS/Linux**: Search for "Terminal"
+
+Subsequent steps will refer to this application as "a terminal".
+```angular2html
+Text displayed like this is meant for entry into a terminal.
+```
+
 ## 1. Install ITK Snap
 **Instructions**: http://www.itksnap.org/pmwiki/pmwiki.php?n=Documentation.TutorialSectionInstallation
 
-**MacOS**: Make sure you copy itksnap to usr_local_bin (step 4)
-
 **Windows**: Make sure you install in the default location
+
+**MacOS**: Make sure you copy itksnap to usr_local_bin (step 4)
 
 **Linux**: Make sure you copy folder contents to /usr/local/ (final optional step)
 
-## 2. Install Python
+**MacOS/Linux**: You can check that the installation worked properly by entering this in a terminal:
+
+```angular2html
+itksnap
+```
+Which should open an ITK Snap window.
+
+**Linux libpng error**: if you are getting a libpng error when you open ITK Snap on linx, follow these instructions: https://askubuntu.com/questions/1409363/installing-libpng12-so-on-ubuntu-22-04
+
+## 2. Install Python 3
 **Instructions**: https://www.python.org/downloads/
+
+To confirm that installation worked (or to check for an existing install), open a terminal and enter:
+```
+python --version
+```
+You should get a result like:
+```angular2html
+>>> Python 3.9.12
+```
 
 ## 3. Install Git
 **Instructions**: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
+To confirm that installation worked (or to check for an existing install), open a terminal and enter:
+```
+git --version
+```
+You should get a result like:
+```angular2html
+>>> git version 2.34.1
+```
+
 ## 4. Install seg_edit
 
-### 1. Open a terminal window
-Windows: "Windows Terminal"
+### 1. Change directories to your home directory: 
+Open a terminal and enter the following:
 
-acOs/Linux: "Terminal"
-
-### 2. Change directories to your home directory: 
-Windows
+**Windows**
 ```angular2html
 cd C:\Users\<user>\
 ```
-MacOS/Linux
+**MacOS/Linux**
 ```angular2html
 cd ~
 ```
 
-### 3. Clone the repository
+### 2. Clone the repository
 ```angular2html
 git clone https://github.com/ecalabr/seg_edit
 ```
@@ -41,12 +75,12 @@ If you get an SSL Certificate error, try:
 git -c http.sslVerify=false clone https://github.com/ecalabr/seg_edit
 ```
 
-### 4. Change directories to the repository directory
+### 3. Change directories to the repository directory
 ```angular2html
 cd seg_edit
 ```
 
-### 5. Install dependencies
+### 4. Install dependencies
 ```angular2html
 pip install -r requirements.txt
 ```
@@ -55,7 +89,7 @@ If you get an SSL Certificate error, try:
 pip install -r requirements.txt --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org
 ```
 
-### 6. Connect to network drive
+### 5. Connect to network drive
 Ensure that you are connected to VPN.
 
 Map the network drive using these instructions: https://answers.uillinois.edu/illinois.engineering/page.php?id=81180
