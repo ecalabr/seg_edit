@@ -28,7 +28,7 @@ Which should open an ITK Snap window.
 
 **Linux libpng error**: if you are getting a libpng error when you open ITK Snap on linx, follow these instructions: https://askubuntu.com/questions/1409363/installing-libpng12-so-on-ubuntu-22-04
 
-## 2. Install Python 3
+## 2. Install Python 3.6 or greater
 **Instructions**: https://www.python.org/downloads/
 
 To confirm that installation worked (or to check for an existing install), open a terminal and enter:
@@ -39,6 +39,7 @@ You should get a result like:
 ```angular2html
 >>> Python 3.9.12
 ```
+Note that version must be greater than or equal to 3.6.x
 
 ## 3. Install Git
 **Instructions**: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
