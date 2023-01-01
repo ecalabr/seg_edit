@@ -30,6 +30,7 @@ Which should open an ITK Snap window.
 
 ## 2. Install Python 3.6 or greater
 **Instructions**: https://www.python.org/downloads/
+
 **Note**: Make sure that you choose the option to add the python executable to your PATH
 
 To confirm that installation worked (or to check for an existing install), open a terminal and enter:
@@ -44,6 +45,7 @@ Note that version must be greater than or equal to 3.6.x
 
 ## 3. Install Git
 **Instructions**: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
 **Windows**: Recommend checking the option to use the default Windows Terminal for Git (cmd.exe).
 
 To confirm that installation worked (or to check for an existing install), open a terminal and enter:
