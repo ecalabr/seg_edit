@@ -1,3 +1,3 @@
 @echo off
-python seg_edit.py
+python "%~dp0seg_edit.py"
 pause

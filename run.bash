@@ -1,2 +1,3 @@
 #!/bin/bash
-python ./seg_edit.py
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+python ${SCRIPT_DIR}/seg_edit.py
