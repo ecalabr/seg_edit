@@ -2,6 +2,8 @@
 base_directory: \\<IP-Address>\data\meningioma\manual_correction
 # relative path to label file
 label_file: preop_mening.label
+# relative path to instructions PDF
+instruction_pdf: segmentation_instructions.pdf
 # the delimiter separating ID from image contrast suffix in filename
 case_id_delimiter: _
 # suffixes for each image contrast

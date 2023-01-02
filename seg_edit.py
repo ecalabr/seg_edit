@@ -138,8 +138,8 @@ def run_command(cmd, case_dir, parameters, uname):
 
 
 # welcome
-def start_session():
-    mesg = """
+def start_session(my_params):
+    message = """
     Welcome to the Segmentation correction tool!
     
     Please read the following instructions carefully:
@@ -158,9 +158,9 @@ def start_session():
     
     Click "Yes" to view instructions or "No" to skip.
     """
-    response = messagebox.askyesno("View Instructions?", mesg)
+    response = messagebox.askyesno("View Instructions?", message)
     if response:
-        view_pdf()
+        view_pdf(my_params)
     uname = get_username()
 
     return uname
@@ -168,14 +168,16 @@ def start_session():
 
 # close session
 def close_session(num_complete):
-    mesg = f"Segmentation session ended. You completed {num_complete} case(s) during this session."
-    messagebox.showinfo("Session Completed!", mesg)
+    message = f"Segmentation session ended. You completed {num_complete} case(s) during this session."
+    messagebox.showinfo("Session Completed!", message)
 
 
 # open instructions pdf with default viewer
-def view_pdf():
+def view_pdf(my_params):
     script_dir = os.path.dirname(os.path.realpath(__file__))
-    pdf_path = os.path.join(script_dir, "segmentation_instructions.pdf")
+    pdf_path = os.path.join(script_dir, my_params["instruction_pdf"])
+    if not os.path.isfile(pdf_path):
+        error_gui(f"Instruction PDF file not found at: {pdf_path}")
     if platform.system() == 'Darwin':  # macOS
         subprocess.call(('open', pdf_path))
     elif platform.system() == 'Windows':  # Windows
@@ -209,10 +211,10 @@ def check_itk_running(name='ITK-SNAP'):
 
 
 # get label file path
-def get_label_file_path(parameters):
+def get_label_file_path(my_params):
     # get file path
     script_dir = os.path.dirname(os.path.realpath(__file__))
-    label_file = os.path.join(script_dir, parameters["label_file"])
+    label_file = os.path.join(script_dir, my_params["label_file"])
     if not os.path.isfile(label_file):
         error_gui(f"Did not find label file in expected location: {label_file}")
     return label_file
@@ -220,10 +222,10 @@ def get_label_file_path(parameters):
 
 # get username
 def get_username():
-    mesg = "Enter your unique username to start correcting cases.\n" \
+    message = "Enter your unique username to start correcting cases.\n" \
            "This can be anything you want, as long as it is unique to you.\n" \
            "Please use the same username each time you use this tool."
-    uname = simpledialog.askstring("Enter Username", mesg, initialvalue=os.getlogin())
+    uname = simpledialog.askstring("Enter Username", message, initialvalue=os.getlogin())
     return uname
 
 
@@ -258,7 +260,7 @@ if __name__ == '__main__':
     itksnap_path = get_itksnap_path()
 
     # start session
-    username = start_session()
+    username = start_session(params)
 
     # iterate through cases
     already_viewed = []
