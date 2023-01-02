@@ -50,6 +50,15 @@ def get_itksnap_path():
         return itksnap
 
 
+# ignore permissions copy error from shutil
+def my_copy(src, dest):
+    try:
+        shutil.copy(src, dest)
+    except OSError as e:
+        if e.errno == 95:
+            pass
+
+
 # get a case
 def select_case(parameters, not_these=()):
     # get list of subdirectories
@@ -68,7 +77,7 @@ def select_case(parameters, not_these=()):
             # copy segmentation file to manually corrected name
             seg = glob(subdir + f"*{parameters['label_suffix']}.nii.gz")[0]
             seg_mc = seg.replace(parameters["label_suffix"], parameters["corrected_suffix"])
-            shutil.copy(seg, seg_mc)
+            my_copy(seg, seg_mc)
 
             return subdir
 
@@ -276,7 +285,8 @@ if __name__ == '__main__':
             keep_going = False
         else:
             command = build_itksnap_command(itksnap_path, case, params)
-            print(f"Loading case {case}. An ITK Snap window will open soon...")
+            print(f"Loading case {case}. An ITK Snap window will open soon. This can take up to a minute depending on "
+                  f"your network connection...")
             success = run_command(command, case, params, username)
             if success:
                 completed += 1
