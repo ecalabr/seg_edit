@@ -76,7 +76,8 @@ def select_case(parameters, not_these=()):
         if all([glob(subdir + f"*{item}.nii.gz") for item in all_suff]) and not glob(subdir + f"*{mc_suffix}.nii.gz"):
             # copy segmentation file to manually corrected name
             seg = glob(subdir + f"*{parameters['label_suffix']}.nii.gz")[0]
-            seg_mc = seg.replace(parameters["label_suffix"], parameters["corrected_suffix"])
+            seg_fn = os.path.basename(seg)
+            seg_mc = os.path.join(subdir, seg_fn.replace(parameters["label_suffix"], parameters["corrected_suffix"]))
             my_copy(seg, seg_mc)
 
             return subdir
