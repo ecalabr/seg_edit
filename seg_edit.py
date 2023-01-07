@@ -123,7 +123,7 @@ def run_command(cmd, case_dir, parameters, uname):
     if corrected_label_image:
         corrected_label_image = corrected_label_image[0]
         # raise save prompt
-        print("A prompt window is open, please locate it to proceed (try Atl/Apple key + Tab)")
+        print("A prompt window is open, please locate it to proceed (try Alt/Apple key + Tab)")
         case_id = os.path.basename(os.path.dirname(case_dir))
         message = f"Would you like to claim credit for manually correcting the following case: {case_id}?"
         response = messagebox.askyesno("Claim Credit?", message)
