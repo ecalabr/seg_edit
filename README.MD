@@ -43,6 +43,12 @@ You should get a result like:
 ```
 Note that version must be greater than or equal to 3.6.x
 
+**MacOS:** If the above command results in a "not found error" even after installation, try:
+```
+echo "alias python=/usr/local/bin/python3" >> ~/.zshrc
+```
+Then quit and reopen your terminal application.
+
 ## 3. Install Git
 **Instructions**: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
@@ -87,11 +93,11 @@ cd seg_edit
 
 ### 4. Install dependencies
 ```angular2html
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 If you get an SSL Certificate error, try:
 ```angular2html
-pip install -r requirements.txt --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org
+python -m pip install -r requirements.txt --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org
 ```
 
 ### 5. Connect to network drive
