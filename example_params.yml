@@ -1,7 +1,9 @@
 # full path to data
-base_directory: \\10.115.210.159\segmentation\BraTS23_meningioma\
+base_directory: \\<server address>\segmentation\
+# relative path to instruction pdf
+instruction_pdf: glioblastoma_common_errors.pdf
 # relative path to label file
-label_file: preop_mening.label
+label_file: preop_gbm.label
 # the delimiter separating ID from image contrast suffix in filename
 case_id_delimiter: _
 # suffixes for each image contrast
@@ -11,6 +13,6 @@ image_suffixes:
   - flair_wm
   - t1c_wm
 # suffix for segmentation
-label_suffix: seg
+label_suffix: tumor-seg
 # suffix for manually corrected (output) segmentation
-corrected_suffix: seg-manual
+corrected_suffix: tumor-seg-manual

@@ -10,8 +10,16 @@ Subsequent steps will refer to this application as "a terminal".
 Text displayed like this is meant for entry into a terminal.
 ```
 
-## 1. Install ITK Snap
-**Instructions**: http://www.itksnap.org/pmwiki/pmwiki.php?n=Documentation.TutorialSectionInstallation
+## 1. Install ITK Snap 3.8.0
+**Instructions**: 
+
+1. Select your OS from the ITK-SNAP 3.8.0 download list: http://www.itksnap.org/pmwiki/pmwiki.php?n=Downloads.SNAP3
+
+2. You can skip the registration step by clicking the link on the bottom right of the registration page
+
+3. The download link will take you to sourceforge.net
+
+4. See additional OS specific instructions below
 
 **Windows**: Make sure you install in the default location
 
@@ -103,9 +111,7 @@ python -m pip install -r requirements.txt --trusted-host pypi.org --trusted-host
 ### 5. Connect to network drive
 Ensure that you are connected to VPN.
 
-Map the network drive using these instructions: https://answers.uillinois.edu/illinois.engineering/page.php?id=81180
-
-Log in using the credentials provided to you.
+Map the network drive using the server address and credentials provided to you. An example tutorial for mapping a network drive can be found here: https://answers.uillinois.edu/illinois.engineering/page.php?id=81180 (Note: this is just an example - the actual server address will be different)
 
 If you are using linux or if you map the network drive to a different location, then you will need to manually edit params.yml with the full path to the mounted drive (base_directory).
 
